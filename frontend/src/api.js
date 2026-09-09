@@ -2,7 +2,7 @@ import axios from "axios";
 
 // One shared axios instance so we don't repeat the base URL everywhere.
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 // This runs before EVERY request: it grabs the saved token from
