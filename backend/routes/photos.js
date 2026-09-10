@@ -183,4 +183,70 @@ router.get("/:eventId", protect, async (req, res) => {
   }
 });
 
+// DELETE /api/photos/:photoId
+// Admin can delete any photo from their event.
+// Team Member can delete only their own photo.
+router.delete("/:photoId", protect, async (req, res) => {
+  try {
+    const photo = await Photo.findById(req.params.photoId);
+
+    if (!photo) {
+      return res.status(404).json({
+        message: "Photo not found.",
+      });
+    }
+
+    const event = await Event.findById(photo.event);
+
+    if (!event) {
+      return res.status(404).json({
+        message: "Event not found.",
+      });
+    }
+
+    const isCreator =
+      event.createdBy.toString() === req.user.id;
+
+    const isUploader =
+      photo.uploadedBy.toString() === req.user.id;
+
+    // Only Admin/event creator or the person who uploaded
+    // the photo can delete it.
+    if (!isCreator && !isUploader) {
+      return res.status(403).json({
+        message: "You do not have permission to delete this photo.",
+      });
+    }
+
+    // Delete the actual image from Cloudinary
+    try {
+      await cloudinary.api.delete_resources(
+        [photo.publicId],
+        {
+          resource_type: "image",
+          type: "upload",
+          invalidate: true,
+        }
+      );
+    } catch (cloudinaryErr) {
+      return res.status(502).json({
+        message:
+          cloudinaryErr.message || "Cloudinary delete failed.",
+      });
+    }
+
+    // Delete the photo metadata from MongoDB
+    await Photo.findByIdAndDelete(photo._id);
+
+    res.json({
+      message: "Photo deleted successfully.",
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Error deleting photo.",
+      error: err.message,
+    });
+  }
+});
+
 module.exports = router;

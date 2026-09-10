@@ -75,6 +75,26 @@ export default function EventPage() {
       e.target.value = "";
     }
   }
+  async function deletePhoto(photoId) {
+    const confirmed = window.confirm(
+      "Are you sure you want to remove this photo?"
+    );
+  
+    if (!confirmed) return;
+  
+    try {
+      setError("");
+  
+      await api.delete(`/photos/${photoId}`);
+  
+      setPhotos((prev) => prev.filter((photo) => photo._id !== photoId));
+      setSelected((prev) => prev.filter((id) => id !== photoId));
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Unable to remove photo."
+      );
+    }
+  }
 
   async function addMember(e) {
     e.preventDefault();
@@ -335,8 +355,16 @@ export default function EventPage() {
                           {isSelected ? "Selected" : "Select"}
                         </span>
                       </label>
-                    )}
-                  </div>
+                                        )}
+
+                                        <button
+                                          type="button"
+                                          className="delete-photo-button"
+                                          onClick={() => deletePhoto(photo._id)}
+                                        >
+                                          Remove
+                                        </button>
+                                      </div>
                 );
               })}
             </div>
