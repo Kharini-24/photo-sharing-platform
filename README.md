@@ -207,9 +207,9 @@ The Team Member password is provided separately for evaluation and is intentiona
 Demo Gallery
 
 Gallery URL:
-https://photo-sharing-platform-mu.vercel.app/gallery/G1nM8OWE
+https://photo-sharing-platform-mu.vercel.app/gallery/D-btoz6s
 
-Gallery PIN:  421874
+Gallery PIN:  441073
 
 The demo gallery was tested successfully on the deployed application.
 
