@@ -135,21 +135,16 @@ CLOUDINARY_API_KEY=352964578429256
 CLOUDINARY_API_SECRET=f67jWBMeNZt-BahM8BJHCBJ6jJc
 PORT=5000
 
-Start the backend:
+Start the backend:  npm start
 
-npm start
-
-For development with Nodemon:
-
-npm run dev
+For development with Nodemon:  npm run dev
 
 The backend runs on:
-
 http://localhost:5000
+
 3. Frontend Setup
 
 Open another terminal:
-
 cd frontend
 npm install
 
@@ -165,17 +160,7 @@ The frontend runs on:
 
 http://localhost:5173
 Environment Variables
-Backend
 
-The backend requires:
-
-MONGO_URI=
-JWT_SECRET=
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-PORT=5000
-Frontend
 
 The frontend requires:
 
@@ -210,29 +195,21 @@ https://github.com/Kharini-24/photo-sharing-platform
 Demo
 Admin Account
 
-Admin email:
-
-harini@gmail.com
+Admin email:  harini@gmail.com
 
 The Admin password is provided separately for evaluation and is intentionally not included in this public repository.
 
 Team Member Account
-
-Team Member email:
-
-priya@gmail.com
+Team Member email:  priya@gmail.com
 
 The Team Member password is provided separately for evaluation and is intentionally not included in this public repository.
 
 Demo Gallery
 
 Gallery URL:
-
 https://photo-sharing-platform-mu.vercel.app/gallery/G1nM8OWE
 
-Gallery PIN:
-
-421874
+Gallery PIN:  421874
 
 The demo gallery was tested successfully on the deployed application.
 
