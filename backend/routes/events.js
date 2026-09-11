@@ -1,6 +1,7 @@
 const express = require("express");
 const Event = require("../models/Event");
 const User = require("../models/User");
+const Photo = require("../models/Photo");
 const { protect, adminOnly } = require("../middleware/auth");
 
 const router = express.Router();
@@ -89,7 +90,20 @@ router.get("/", protect, async (req, res) => {
         ? await Event.find({ createdBy: req.user.id })
         : await Event.find({ members: req.user.id });
 
-    res.json(events);
+    const eventsWithPhotoCount = await Promise.all(
+      events.map(async (event) => {
+        const photoCount = await Photo.countDocuments({
+          event: event._id,
+        });
+
+        return {
+          ...event.toObject(),
+          photoCount,
+        };
+      })
+    );
+
+    res.json(eventsWithPhotoCount);
   } catch (err) {
     res.status(500).json({
       message: "Error fetching events.",
