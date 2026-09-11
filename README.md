@@ -128,11 +128,11 @@ npm install
 
 Create a .env file inside the backend folder:
 
-MONGO_URI=mongodb+srv://imharini:vQeAwj2bJfzHIFTa@cluster0.hudygfy.mongodb.net/photosharing?retryWrites=true&w=majority
-JWT_SECRET=harini2027photosharingsecret
-CLOUDINARY_CLOUD_NAME=tuy0zw9y
-CLOUDINARY_API_KEY=352964578429256
-CLOUDINARY_API_SECRET=f67jWBMeNZt-BahM8BJHCBJ6jJc
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 PORT=5000
 
 Start the backend:  npm start
