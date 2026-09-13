@@ -23,7 +23,7 @@ export default function PublicGallery() {
       setError("");
 
       const res = await axios.post(
-        `http://localhost:5000/api/gallery/${slug}/access`,
+        `${import.meta.env.VITE_API_URL}/gallery/${slug}/access`,
         { pin }
       );
 
